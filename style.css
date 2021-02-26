@@ -1,0 +1,51 @@
+.gameboard{
+    position: relative;
+    left: 40%;
+    width: 200px;
+    height: 200px;
+    display: grid;
+    border: solid;
+    background: lightgray;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+}
+.gameboard > div {
+    border: solid;
+    border-color: black;
+    font-size: 50px;
+    text-align: center;
+}
+.gameboard > div:hover {
+    background-color: white;
+}
+
+.gametitle {
+    position: relative;
+    left: 40%;
+    font-size: 35px;
+}
+footer {
+    position: absolute;
+    bottom: 10px;
+    background-color: rgb(32, 69, 99);
+    color:white;
+    font-weight: bold;
+    width: 100%;
+    font-size: 10px;
+    text-align:center;
+}
+header{
+    background-color: rgb(32, 69, 99);
+    color:white;
+    font-weight: bold;
+    width: 100%;
+    font-size: 10px;
+    text-align: center;
+}
+a {
+    color: white;
+    text-decoration: none;
+}
+a:hover {
+    color:orange;
+}
