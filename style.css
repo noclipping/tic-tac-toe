@@ -33,6 +33,40 @@
     left: 40%;
     font-size: 35px;
 }
+
+.players {
+    top: 40%; 
+        left: 30%; 
+        display: block;
+        position: absolute;
+        background-color: lightgray;
+        border: solid;
+        width: 350px;
+        height:  110px;
+
+}
+.players > p {
+    text-align: center;
+}
+input {
+    display: flex;
+    width: 150px;
+    text-align: center;
+    background: transparent;
+}
+input:focus, input:focus{
+    outline: none;
+}
+.inputone {
+    position: absolute;
+    top: 10%;
+    left: 10%;
+}
+.inputtwo {
+    position: absolute;
+    top: 10%;
+    left: 75%;
+}
 footer {
     position: absolute;
     bottom: 10px;

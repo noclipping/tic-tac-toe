@@ -31,11 +31,12 @@ const gameState = (()=>{
 })();
 
 
-const player = (input) => {
-    const playerBoard = ['','','','','','','','','']
+const player = (input, name) => {
+    let playerBoard = ['','','','','','','','','']
     const getBoard = () => {return playerBoard};
     const addTile = (position) => {playerBoard.splice(position,1,'X');}
-    return {getBoard, input, addTile}
+    boardReset = () => playerBoard = ['','','','','','','','',''];
+    return {getBoard, input, addTile, name, boardReset}
 }
 
 const winCheck= (()=>{
@@ -55,7 +56,7 @@ const verifyWin = (player) =>{
     const DOMboard = document.querySelector('.gameboard')
     const winScreen = document.createElement('p');
     winScreen.classList.add("winscreen")
-    winScreen.textContent = `${player.input} WINS!!!`
+    winScreen.textContent = `${player.name} WINS!!!`
     const pA = player.getBoard();
     const win = 'XXX'
     const h1 = pA[0]+pA[1]+pA[2];
@@ -84,11 +85,13 @@ const verifyWin = (player) =>{
 }
 
 
+oneName = document.querySelector(".inputone").value;
+twoName = document.querySelector(".inputtwo").value;
+console.log(twoName)
 
+const playerOne = player('X',oneName);
 
-const playerOne = player('X');
-
-const playerTwo = player('O');
+const playerTwo = player('O',twoName);
 
 
 
@@ -107,12 +110,14 @@ theBoard.addEventListener("click", e=>{
             console.log(gameBoard.getArray())
             
             if(gameState.Input()==="X"){
+                playerOne.name = document.querySelector(".inputone").value;
                 console.log("player 1 moved");
                 playerOne.addTile(tileSelect);
                 console.log(playerOne.getBoard());
                 verifyWin(playerOne);
 
             } else if(gameState.Input() === "O"){
+                playerTwo.name = document.querySelector(".inputtwo").value;
                 console.log("player 2 moved");
                 playerTwo.addTile(tileSelect);
                 console.log(playerTwo.getBoard());
