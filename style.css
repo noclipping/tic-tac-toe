@@ -8,12 +8,21 @@
     background: lightgray;
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: repeat(3, 1fr);
+  
+}
+.winscreen{
+    left: 40%;
+    font-size: 100px;
+    background-color: lightsteelblue;
+    text-align:center;
 }
 .gameboard > div {
     border: solid;
     border-color: black;
-    font-size: 50px;
+    font-size: 40px;
     text-align: center;
+    background: lightgray;
+    cursor: pointer;
 }
 .gameboard > div:hover {
     background-color: white;
