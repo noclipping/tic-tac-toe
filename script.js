@@ -1,19 +1,23 @@
-const gameBoard = ( ()=>{
+
+
     let boardTiles = document.querySelectorAll('[data-index]')
-    const tiles = ['','','','','','','','','']
+
+    const gameBoard = ( ()=>{
+    let tiles = ['','','','','','','','','']
 
     const addTile = (playerInput, position) =>{
         tiles.splice(position,1,playerInput);
         boardTiles[position].textContent=playerInput;
     }
     const getArray = () => {return tiles}
-
-    return{addTile, getArray};
+    const resetBoard = () =>{tiles=['','','','','','','','','']}
+    return{addTile, getArray, resetBoard};
 
 })();
 
 const gameState = (()=>{
     let counter = 1
+    let initialcounter = 1;
     const Increment = () =>{
         counter+=1;
     }
@@ -27,7 +31,12 @@ const gameState = (()=>{
     const getCounter =()=>{
         return(counter)
     }
-    return{Increment,Input,getCounter}
+    const counterReset = () => {
+        if(initialcounter===1){counter = 0; initialcounter=0;}
+        else if (initialcounter===0){counter = 1; initialcounter=1;}
+       
+    }
+    return{Increment,Input,getCounter,counterReset,initialcounter}
 })();
 
 
@@ -51,12 +60,21 @@ ____|_____|_____
 [6] | [7] | [8]
     |     |
 */
+const DOMboard = document.querySelector('.gameboard')
+const winScreen = document.createElement('p');
+const body = document.querySelector('body');
+winScreen.classList.add("winscreen")
+const resetButton = document.createElement('button');
+resetButton.classList.add('reset')
+resetButton.textContent = "RESET"
+
+
 const verifyWin = (player) =>{
 
-    const DOMboard = document.querySelector('.gameboard')
-    const winScreen = document.createElement('p');
-    winScreen.classList.add("winscreen")
+
     winScreen.textContent = `${player.name} WINS!!!`
+
+
     const pA = player.getBoard();
     const win = 'XXX'
     const h1 = pA[0]+pA[1]+pA[2];
@@ -75,11 +93,15 @@ const verifyWin = (player) =>{
     */
     if(h1 === win | h2 === win | h3 === win | v1 === win | v2 === win | v3 === win | d1 === win | d2 === win){
         console.log(player.input, "wins")
-        DOMboard.parentNode.replaceChild(winScreen, DOMboard);
+        //DOMboard.parentNode.replaceChild(winScreen, DOMboard);
+        body.appendChild(resetButton);
+        body.appendChild(winScreen);
         
     }else if(gameState.getCounter() === 9){
         winScreen.textContent = `TIE!`
-        DOMboard.parentNode.replaceChild(winScreen, DOMboard);
+        //DOMboard.parentNode.replaceChild(winScreen, DOMboard);
+        body.appendChild(resetButton);
+        body.appendChild(winScreen);
         
     }
 }
@@ -130,4 +152,16 @@ theBoard.addEventListener("click", e=>{
         }else{
             console.log("stolen!")}
 
+})
+
+resetButton.addEventListener("click", e=>{
+    body.removeChild(resetButton);
+    body.removeChild(winScreen);
+    playerOne.boardReset();
+    playerTwo.boardReset();
+    gameState.counterReset();
+    gameBoard.resetBoard();
+    boardTiles.forEach((tile)=>{
+        tile.textContent=""
+    })
 })
