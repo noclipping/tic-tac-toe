@@ -92,3 +92,23 @@ a {
 a:hover {
     color:orange;
 }
+
+.reset {
+    position: relative;
+    left: 40%;
+    top: 10px;
+    height: 50px;
+    width: 200px;
+    text-align: center;
+    text-decoration: none;
+    border: solid;
+    border-color: black;
+    color: white;
+    background-color: rgb(32, 69, 99);
+    cursor: pointer;
+    font-size: 20px;
+
+}
+.reset:hover {
+    background-color: lightseagreen;
+}
